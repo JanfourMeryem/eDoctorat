@@ -1,5 +1,7 @@
 package com.edoctorat.edoctorat.modele;
 
+import java.util.List;
+import java.util.ArrayList;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,4 +14,7 @@ public class Pays {
 
     @Column(name = "nom", length = 255, nullable = false)
     private String nom;
+
+    @OneToMany(mappedBy = "pays")
+    private List<Candidat> candidats = new ArrayList<>();
 }

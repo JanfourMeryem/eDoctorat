@@ -1,5 +1,7 @@
 package com.edoctorat.edoctorat.modele;
 
+import java.util.List;
+import java.util.ArrayList;
 import jakarta.persistence.*;
 
 @Entity
@@ -30,4 +32,16 @@ public class Sujet {
     @ManyToOne
     @JoinColumn(name = "professeur_id", nullable = false)
     private Professeur professeur;
+
+    @OneToMany(mappedBy = "sujet")
+    private List<Postuler> postulations = new ArrayList<>();
+
+    @OneToMany(mappedBy = "sujet")
+    private List<Notification> notifications = new ArrayList<>();
+
+    @OneToMany(mappedBy = "sujet")
+    private List<Examiner> examens = new ArrayList<>();
+
+    @OneToMany(mappedBy = "sujet")
+    private List<Inscription> inscriptions = new ArrayList<>();
 }

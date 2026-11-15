@@ -1,5 +1,7 @@
 package com.edoctorat.edoctorat.modele;
 
+import java.util.List;
+import java.util.ArrayList;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -24,4 +26,13 @@ public class Commission {
     @ManyToOne
     @JoinColumn(name = "labo_id", nullable = false)
     private Laboratoire laboratoire;
+
+    @OneToMany(mappedBy = "commission")
+    private List<CommissionProfesseur> membres = new ArrayList<>();
+
+    @OneToMany(mappedBy = "commission")
+    private List<Examiner> examens = new ArrayList<>();
+
+    @OneToMany(mappedBy = "commission")
+    private List<Notification> notifications = new ArrayList<>();
 }

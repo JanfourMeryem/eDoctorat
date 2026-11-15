@@ -1,5 +1,7 @@
 package com.edoctorat.edoctorat.modele;
 
+import java.util.List;
+import java.util.ArrayList;
 import jakarta.persistence.*;
 
 @Entity
@@ -24,4 +26,10 @@ public class Ced {
     @ManyToOne
     @JoinColumn(name = "directeur_id")
     private Professeur directeur;
+
+    @OneToMany(mappedBy = "ced")
+    private List<Laboratoire> laboratoires = new ArrayList<>();
+
+    @OneToMany(mappedBy = "ced")
+    private List<FormationDoctorale> formationsDoctorales = new ArrayList<>();
 }

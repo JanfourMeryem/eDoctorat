@@ -1,5 +1,7 @@
 package com.edoctorat.edoctorat.modele;
 
+import java.util.List;
+import java.util.ArrayList;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
@@ -74,4 +76,19 @@ public class Candidat {
 
     @Column(nullable = false)
     private Boolean fonctionaire;
+
+    @OneToMany(mappedBy = "candidat")
+    private List<Diplome> diplomes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "candidat")
+    private List<Notification> notifications = new ArrayList<>();
+
+    @OneToMany(mappedBy = "candidat")
+    private List<Postuler> postulations = new ArrayList<>();
+
+    @OneToMany(mappedBy = "candidat")
+    private List<Examiner> examens = new ArrayList<>();
+
+    @OneToMany(mappedBy = "candidat")
+    private List<Inscription> inscriptions = new ArrayList<>();
 }

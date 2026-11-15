@@ -1,5 +1,7 @@
 package com.edoctorat.edoctorat.modele;
 
+import java.util.List;
+import java.util.ArrayList;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -40,4 +42,16 @@ public class AuthUser {
 
     @Column(name = "date_joined", nullable = false)
     private LocalDateTime dateJoined;
+
+    @OneToMany(mappedBy = "user")
+    private List<Candidat> candidats = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Professeur> professeurs = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<AuthUserGroup> groupes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<AuthUserPermission> permissions = new ArrayList<>();
 }

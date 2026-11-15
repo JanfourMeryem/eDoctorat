@@ -1,5 +1,7 @@
 package com.edoctorat.edoctorat.modele;
 
+import java.util.List;
+import java.util.ArrayList;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
@@ -43,4 +45,7 @@ public class Diplome {
     @ManyToOne
     @JoinColumn(name = "candidat_id", nullable = false)
     private Candidat candidat;
+
+    @OneToMany(mappedBy = "diplome")
+    private List<Annexe> annexes = new ArrayList<>();
 }

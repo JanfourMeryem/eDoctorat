@@ -1,5 +1,7 @@
 package com.edoctorat.edoctorat.modele;
 
+import java.util.List;
+import java.util.ArrayList;
 import jakarta.persistence.*;
 
 @Entity
@@ -35,9 +37,26 @@ public class Professeur {
     @JoinColumn(name = "etablissement_id", nullable = false)
     private Etablissement etablissement;
 
-    @Column(name = "labo_id")
-    private Long laboId;
+    @ManyToOne
+    @JoinColumn(name = "labo_id")
+    private Laboratoire laboratoire;
 
-    @Column(name = "user_id", nullable = false)
-    private Integer userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private AuthUser user;
+
+    @OneToMany(mappedBy = "directeur")
+    private List<Ced> cedsDiriges = new ArrayList<>();
+
+    @OneToMany(mappedBy = "directeur")
+    private List<Laboratoire> laboratoiresDiriges = new ArrayList<>();
+
+    @OneToMany(mappedBy = "professeur")
+    private List<Sujet> sujetsProposes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "coDirecteur")
+    private List<Sujet> sujetsCoDiriges = new ArrayList<>();
+
+    @OneToMany(mappedBy = "professeur")
+    private List<CommissionProfesseur> participationsCommissions = new ArrayList<>();
 }
